@@ -9,8 +9,8 @@
     <table class="table table-hover" v-if="posts.length">
         <thead>
             <tr>
-                <th scope="col">userId</th>
-                <th>id</th>
+                <th scope="col">id</th>
+                <th>Author name</th>
                 <th>title</th>
                 <th>body</th>
                 <th>action</th>
@@ -18,11 +18,11 @@
         </thead>
         <tbody>
             <tr v-for="(post) in posts" :key="post.userId">
-                <td>{{ post.userId }}</td>
                 <td>{{ post.id }}</td>
+                <td><span class="badge bg-success">{{ usersNames[post.userId] }}</span></td>
                 <td>{{ post.title }}</td>
                 <td>{{ post.body }}</td>
-                <td><button class="btn btn-primary">Delete</button></td>
+                <td><button class="btn btn-danger">Delete</button></td>
             </tr>
         </tbody>
     </table>
@@ -39,14 +39,45 @@
         },
         data() {
             return {
-                posts : []
+                users : [],
+                posts : [],
+                usersNames : []
             }
         },
         mounted() {
-            this.fetchPosts()
+            this.fetchUsers();
         },
 
         methods: {
+            fetchUsers : function () {
+                let _this = this;
+
+                _this.users = [];
+                
+                let config = {
+                    method: 'get',
+                    url: 'https://jsonplaceholder.typicode.com/users/'
+                };
+
+                axios(config)
+                .then(function (response) {
+                    _this.users = response.data;
+                    _this.transformUsers();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    alert("Unable to get users.")
+                });
+            },
+
+            transformUsers : function () {
+                for (let index = 0; index < this.users.length; index++) {
+                    this.usersNames[this.users[index].id] = this.users[index].name;
+                }
+
+                this.fetchPosts();
+            },
+
             fetchPosts : function () {
                 let _this = this;
              
