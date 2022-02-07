@@ -25,6 +25,7 @@ Route::get('/', function () {
     ]);
 });
 
-
-Route::get("/users", [UsersController::class, "index"])->name("users");
-Route::get("/users/create", [UsersController::class, "create"])->name("create");
+Route::get('/users', [UsersController::class, 'index'])->name('users');
+Route::get('/users/create', [UsersController::class, 'create'])->name('create');
+Route::get('/users/posts', [UsersController::class, 'posts'])->name('posts');
+Route::get('/users/posts/create', [UsersController::class, 'createposts'])->name('createposts');

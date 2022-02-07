@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class UsersController extends Controller
 {
     public function index()
     {
-        return Inertia::render("Users");
+        return Inertia::render('Users');
     }
-    
+
     public function create()
     {
-        return Inertia::render("Create");
+        return Inertia::render('Create');
+    }
+
+    public function posts()
+    {
+        return Inertia::render('Posts');
+    }
+
+    public function createposts()
+    {
+        return Inertia::render('createPosts');
     }
 }
