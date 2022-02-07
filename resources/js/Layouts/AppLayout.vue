@@ -12,7 +12,7 @@
                         <Link class="nav-link active" aria-current="page" :href="route('users')">Users</Link>
                     </li>
                     <li class="nav-item">
-                        <Link class="nav-link" aria-current="page" href="#">Posts</Link>
+                        <Link class="nav-link" aria-current="page" :href="route('posts')">Posts</Link>
                     </li>
                     <li class="nav-item">
                         <Link class="nav-link" aria-current="page" href="#">Albums</Link>

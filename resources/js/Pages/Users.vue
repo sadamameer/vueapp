@@ -1,14 +1,19 @@
 <template>
 
 <AppLayout>
-    <h1>Users</h1>
+    <div class="row">
+        <div class="col">
+            <h1>Users</h1>
+        </div>
+        <div class="col text-end ">
+            <inertia-link :href="route('create')"><button class="btn btn-primary" @click="createUser()">Create</button></inertia-link>
+            <button class="btn btn-success mx-2" @click="fetchUsers()">Refresh</button>
+        </div>
+    </div>
 
-    <inertia-link :href="route('create')"><button class="btn btn-primary" @click="createUser()">Create</button></inertia-link>
-    
-    <inertia-link :href="route('posts')"><button class="btn btn-primary  mx-2"  @click="createPosts()">Posts</button></inertia-link>
+    <hr>
 
-    <button class="btn btn-primary mx-2" @click="fetchUsers()">Refresh</button>
-    <div v-if="deleted" class="alert alert-success">
+    <div v-if="deleted" class="alert alert-danger">
         User Data  Delete
     </div>
     <table class="table table-hover" v-if="users.length">
