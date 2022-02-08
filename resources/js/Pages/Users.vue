@@ -55,6 +55,7 @@
 <script>
 
     import AppLayout from '@/Layouts/AppLayout.vue'
+    import axios from 'axios';
 
     export default ({
 
@@ -73,7 +74,7 @@
         },
 
         methods: {
-                    
+
             fetchUsers : function () {
 
                 let _this = this;
@@ -93,7 +94,6 @@
                     console.log(error);
                 });
             },
-            
 
             deleteUser : function (id, i) {
 
@@ -112,10 +112,7 @@
                 .catch(function (error) {
                     console.log(error);
                 });
-                
-                
             },
-
         },
 
     })
