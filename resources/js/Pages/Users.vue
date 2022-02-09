@@ -4,6 +4,11 @@
     <div class="row">
         <div class="col">
             <h1>Users</h1>
+
+            <h2>{{count}}</h2>
+             <button v-on:click="count=count+1">Plus</button>  
+             <button v-on:click="count=count-1">Minus</button> 
+
         </div>
         <div class="col text-end ">
             <inertia-link :href="route('create')"><button class="btn btn-primary" @click="createUser()">Create</button></inertia-link>
@@ -65,9 +70,20 @@
 
         data() {
             return {
-                users : []
+                users : [],
+                count:0
             }
         },
+        
+
+        watch:{
+            count(val){
+               if(val>5){
+                   alert("stop counting")
+               }
+            }
+        },
+
 
         mounted() {
             this.fetchUsers()

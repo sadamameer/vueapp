@@ -1,14 +1,16 @@
 <template>
 <AppLayout>
-    <div class="row">
+        <div class="row">
         <div class="col">
-            <h1>{{ (posts.length) ? posts.length : "" }} Posts</h1>
+            <h1>{{usersNames[selectedUser]}} Posts {{  (posts.length) ? posts.length : ""  }}  </h1>
         </div>
         <div class="col text-center" v-if="posts.length">
-            <select class="form-control" v-model="selectedUser">
+            <select  class="form-control" v-model="selectedUser">
                 <option value="">-- Select User --</option>
-                <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name}}</option>
+                <option v-for="user in users" :key="user.id" :value="user.id">{{ user.id}}{{ user.name}}</option>
             </select>
+
+           
         </div>
         <div class="col text-end ">
             <inertia-link :href="route('createposts')"><button class="btn btn-primary mx-2">Create New Post</button></inertia-link>
@@ -49,7 +51,7 @@
                 users : [],
                 posts : [],
                 selectedUser : "",
-                usersNames : [],
+                usersNames : []
             }
         },
         mounted() {
@@ -57,12 +59,14 @@
         },
 
         methods: {
+
+           
+
             getSrc : function (title) {
                 return "https://ui-avatars.com/api/?name="+ title +"&color=F05430&background=000";
             },
 
-
-
+           
             fetchUsers : function () {
                 let _this = this;
                 _this.users = [];
@@ -72,6 +76,7 @@
                     url: 'https://jsonplaceholder.typicode.com/users/'
                 };
 
+            
                 axios(config)
                 .then(function (response) {
                     _this.users = response.data;
@@ -98,8 +103,10 @@
                 let apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 
                 if (flag && this.selectedUser) {
-                    apiUrl = apiUrl + '?userId=' + this.selectedUser;
+                    apiUrl = apiUrl  + '?userId='  + this.selectedUser;
                 }
+
+
              
                 let config = {
                 method: 'get',
@@ -115,25 +122,7 @@
                 });
             },
 
-            fetchUserPosts : function () {
-                let _this = this;
-                _this.posts = [];
-             
-                let config = {
-                method: 'get',
-                    url: 'https://jsonplaceholder.typicode.com/posts?userId=' + this.selectedUser
-                };
-                axios(config)
-                .then(function (response) {
-                    _this.posts = response.data;
-
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            },
-
-
+        
             deleteUser : function (id, i) {
 
                 let _this = this;
@@ -157,7 +146,9 @@
         watch : {
             selectedUser : function () {
                 this.fetchPosts(true);
-            }
+            },
+
+          
         }
     })
 </script>
