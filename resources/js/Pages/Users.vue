@@ -4,11 +4,6 @@
     <div class="row">
         <div class="col">
             <h1>Users</h1>
-
-            <h2>{{count}}</h2>
-             <button v-on:click="count=count+1">Plus</button>  
-             <button v-on:click="count=count-1">Minus</button> 
-
         </div>
         <div class="col text-end ">
             <inertia-link :href="route('create')"><button class="btn btn-primary" @click="createUser()">Create</button></inertia-link>
@@ -25,10 +20,10 @@
         <thead>
             <tr>
                 <th scope="col">id</th>
-                <th>name</th>
+                <th>user</th>
                 <th>username</th>
                 <th>email</th>
-                <th>address</th>
+                <th>address</th> 
                 <th>phone</th>
                 <th>website</th>
                 <th>company</th>
@@ -71,7 +66,6 @@
         data() {
             return {
                 users : [],
-                count:0
             }
         },
         

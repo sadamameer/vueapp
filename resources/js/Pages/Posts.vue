@@ -2,15 +2,13 @@
 <AppLayout>
         <div class="row">
         <div class="col">
-            <h1 style="font-size:18px">{{  (posts.length) ? posts.length : ""  }} Posts  <span  class="badge bg-success" style="font-size:19px">{{usersNames[selectedUser]}}</span></h1>
+            <h1 style="font-size:18px">{{  (posts.length) ? posts.length : ""  }} Posts  <span  class="badge bg-success" style="font-size:19px">{{ usersNames[selectedUser]}}</span></h1>
         </div>
         <div class="col text-center" v-if="posts.length">
             <select  class="form-control" v-model="selectedUser">
                 <option value="">-- Select User --</option>
                 <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name}}</option>
             </select>
-
-           
         </div>
         <div class="col text-end ">
             <inertia-link :href="route('createposts')"><button class="btn btn-primary mx-2">Create New Post</button></inertia-link>
@@ -51,7 +49,7 @@
                 users : [],
                 posts : [],
                 selectedUser : "",
-                usersNames : []
+                usersNames : [],
             }
         },
         mounted() {
@@ -59,13 +57,9 @@
         },
 
         methods: {
-
-           
-
             getSrc : function (title) {
                 return "https://ui-avatars.com/api/?name="+ title +"&color=F05430&background=000";
             },
-
            
             fetchUsers : function () {
                 let _this = this;
@@ -96,6 +90,8 @@
                 this.fetchPosts();
             },         
 
+            
+
             fetchPosts : function (flag = false) {
                 let _this = this;
                 _this.posts = [];
@@ -106,8 +102,6 @@
                     apiUrl = apiUrl  + '?userId='  + this.selectedUser;
                 }
 
-
-             
                 let config = {
                 method: 'get',
                     url: apiUrl
@@ -121,7 +115,6 @@
                     console.log(error);
                 });
             },
-
         
             deleteUser : function (id, i) {
 
@@ -146,9 +139,7 @@
         watch : {
             selectedUser : function () {
                 this.fetchPosts(true);
-            },
-
-          
+            },          
         }
     })
 </script>
