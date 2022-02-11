@@ -54,6 +54,7 @@
 <script>
 
     import AppLayout from '@/Layouts/AppLayout.vue'
+    import axios from 'axios';
 
     export default ({
 
@@ -63,16 +64,26 @@
 
         data() {
             return {
-                users : []
+                users : [],
             }
         },
+        
+
+        watch:{
+            count(val){
+               if(val>5){
+                   alert("stop counting")
+               }
+            }
+        },
+
 
         mounted() {
             this.fetchUsers()
         },
 
         methods: {
-                    
+
             fetchUsers : function () {
 
                 let _this = this;
@@ -92,7 +103,6 @@
                     console.log(error);
                 });
             },
-            
 
             deleteUser : function (id, i) {
 
@@ -111,10 +121,7 @@
                 .catch(function (error) {
                     console.log(error);
                 });
-                
-                
             },
-
         },
 
     })
