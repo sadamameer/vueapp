@@ -1,7 +1,7 @@
 <template>
   <AppLayout>
     <h1>Create User</h1>
-    <h4 v-if="flag" class="text-center mt-3 mb-3">New user created successfully.</h4>
+    <h5 v-if="flag" class="text-center mt-3 mb-3 alert alert-success">New user created successfully.</h5>
     <form action="javascript:;">
       <div class="form-group mb-3">
         <label>Enter name</label>

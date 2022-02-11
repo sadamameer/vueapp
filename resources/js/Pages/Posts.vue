@@ -6,7 +6,7 @@
             <h1>Posts</h1>
         </div>
         <div class="col text-end ">
-            <inertia-link :href="route('createposts')"><button class="btn btn-primary mx-2">Create New Post</button></inertia-link>
+            <inertia-link :href="route('createposts')"><button class="btn btn-primary mx-2">Create</button></inertia-link>
             <button class="btn btn-success" @click="fetchPosts()">Refresh</button>
         </div>
     </div>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="container mt-5 p-5 text-center" v-else>
-        <h1>Nothing found!</h1>
+        <img src="https://cdn.dribbble.com/users/453325/screenshots/5573953/empty_state.png" class="w-50">
     </div>
     
 </AppLayout>

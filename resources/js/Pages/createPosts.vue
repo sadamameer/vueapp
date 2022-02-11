@@ -1,15 +1,16 @@
 <template>
   <AppLayout>
     <h1>Create Posts</h1>
-    <h4 v-if="flag" class="text-center mt-3 mb-3">New Post created successfully.</h4>
+    <h5 v-if="flag" class="text-center mt-3 mb-3 alert alert-success">New post created successfully.</h5>
     <form action="javascript:;">
       <div class="form-group">
-        <label for="exampleFormControlSelect1">Example select</label>
-        <select v-model="userId" class="form-control" id="exampleFormControlSelect1" @click="fetchUsers()">
+        <label>Select Author</label>
+        <select v-model="userId" class="form-control" @click="fetchUsers()">
+          <option value="">-- Select Author --</option>
           <option :value="user.id"  v-for="(user) in users" :key="user.id" >{{ user.name }}</option>
         </select>
       </div>
-      <div class="form-group mb-3">
+      <div class="form-group mt-2">
         <label>Title</label>
         <input
           v-model="title"
@@ -18,7 +19,7 @@
           placeholder="Title"
         />
       </div>
-      <div class="form-group mb-3">
+      <div class="form-group mt-2">
         <label>Description</label>
         <textarea
           v-model="description"
@@ -28,7 +29,7 @@
         </textarea>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group mt-2">
         <button @click="createNewPosts()" class="btn btn-primary">
           Create Post
         </button>

@@ -19,22 +19,22 @@
     <table class="table table-hover" v-if="users.length">
         <thead>
             <tr>
-                <th scope="col">id</th>
-                <th>name</th>
-                <th>username</th>
-                <th>email</th>
-                <th>address</th>
-                <th>phone</th>
-                <th>website</th>
-                <th>company</th>
-                <th>action</th>
+                <th scope="col">#</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Website</th>
+                <th>Company</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="(user, i) in users" :key="user.id">
                 <td>{{ user.id }}</td>
                 <td>{{ user.name }}</td>
-                <td>{{ user.username }}</td>
+                <td><span class="badge bg-primary">{{ user.username }}</span></td>
                 <td><span class="badge bg-success">{{ user.email }}</span></td>
                 <td>{{ user.address.street }}, {{ user.address.suite }}, {{ user.address.city }}, {{ user.address.zipcode }}  {{ user.address.geo.lat }} {{ user.address.geo.lng }}</td>
                 <td>{{ user.phone }}</td>
@@ -44,9 +44,8 @@
             </tr>
         </tbody>
     </table>
-
     <div class="container mt-5 p-5 text-center" v-else>
-        <h1>Nothing found!</h1>
+        <img src="https://cdn.dribbble.com/users/453325/screenshots/5573953/empty_state.png" class="w-50">
     </div>
 </AppLayout>
 
